@@ -1,0 +1,95 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0; /* Remove default margin */
+    height: 100vh; /* Use full height of the viewport */
+    justify-content: center; /* Center content vertically */
+}
+
+#game-container {
+    display: grid;
+    grid-gap: 5px; /* Reduce gap for smaller screens */
+    width: 90vw; /* Use 90% of the viewport width */
+    max-width: 600px; /* Set a max width for larger screens */
+    height: 90vh; /* Use 90% of the viewport height */
+    max-height: 600px; /* Set a max height for larger screens */
+    background-color: navy; /* Navy blue background */
+    padding: 10px;
+    border-radius: 10px;
+    position: relative; /* To position elements inside the container */
+    color: white; /* White text color for all text inside the container */
+}
+
+.card {
+    background-color: lightblue; /* Light blue back of the card */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden; /* Ensure images stay within the card */
+    position: relative; /* To position logo inside the card */
+}
+
+.card.hidden {
+    background-image: url('https://static.wixstatic.com/media/7b5caa_48cc1b852b9043debb22f364ae6341ad~mv2.png'); /* Logo on card back */
+    background-size: 50%; /* Set logo size to 50% of original */
+    background-repeat: no-repeat; /* No repeat of logo */
+    background-position: center; /* Center the logo */
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Keep proportions */
+}
+
+#next-level-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    position: absolute; /* Place the button inside the game container */
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    z-index: 10; /* Bring button to the front */
+}
+
+#score-display, #timer-display {
+    font-size: 1rem;
+    margin-top: 10px;
+    text-align: center;
+    color: white; /* White text color */
+    z-index: 5; /* Ensure score and timer are above the cards */
+}
+
+/* Auto-resizing cards within container */
+#game-container {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Adjust min-size for smaller screens */
+    grid-auto-rows: minmax(60px, 1fr); /* Adjust min-size for smaller screens */
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 300px) {
+    #game-container {
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Smaller grid for phones */
+        grid-auto-rows: minmax(50px, 1fr);
+        grid-gap: 3px; /* Reduce gap */
+        padding: 5px; /* Reduce padding */
+    }
+
+    #next-level-btn {
+        font-size: 0.8rem; /* Smaller font size */
+        padding: 8px 16px; /* Smaller padding */
+        bottom: 20px; /* Adjust position */
+    }
+
+    #score-display, #timer-display {
+        font-size: 0.8rem; /* Smaller font size */
+    }
+}
