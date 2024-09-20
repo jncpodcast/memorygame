@@ -11,11 +11,9 @@ body {
 
 #game-container {
     display: grid;
-    grid-gap: 5px; /* Reduce gap for smaller screens */
-    width: 90vw; /* Use 90% of the viewport width */
-    max-width: 600px; /* Set a max width for larger screens */
-    height: 90vh; /* Use 90% of the viewport height */
-    max-height: 600px; /* Set a max height for larger screens */
+    grid-gap: 5px; /* Gap between cards */
+    width: 300px; /* Fixed width */
+    height: 600px; /* Fixed height */
     background-color: #000036; /* Navy blue background */
     padding: 10px;
     border-radius: 10px;
@@ -68,28 +66,8 @@ body {
     z-index: 5; /* Ensure score and timer are above the cards */
 }
 
-/* Auto-resizing cards within container */
+/* Auto-resizing cards within fixed container */
 #game-container {
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Adjust min-size for smaller screens */
-    grid-auto-rows: minmax(60px, 1fr); /* Adjust min-size for smaller screens */
-}
-
-/* Media Query for Smaller Screens */
-@media (max-width: 300px) {
-    #game-container {
-        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Smaller grid for phones */
-        grid-auto-rows: minmax(50px, 1fr);
-        grid-gap: 3px; /* Reduce gap */
-        padding: 5px; /* Reduce padding */
-    }
-
-    #next-level-btn {
-        font-size: 0.8rem; /* Smaller font size */
-        padding: 8px 16px; /* Smaller padding */
-        bottom: 20px; /* Adjust position */
-    }
-
-    #score-display, #timer-display {
-        font-size: 0.8rem; /* Smaller font size */
-    }
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Adjust min-size for better fit */
+    grid-auto-rows: minmax(50px, 1fr); /* Adjust min-size for better fit */
 }
