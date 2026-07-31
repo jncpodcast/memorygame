@@ -54,7 +54,7 @@
   }
 
   #game-wrap{
-    position:top;
+    position:relative;
     width:min(96vw, calc(96dvh * .5625), 460px);
     height:min(96dvh, calc(96vw * 1.7778), 818px);
     min-width:280px;
@@ -86,6 +86,15 @@
     position:absolute; inset:-40%; z-index:-1;
     background:conic-gradient(from 0deg, transparent, rgba(39,215,255,.12), transparent 24%, rgba(255,79,199,.1), transparent 54%, rgba(244,240,0,.08), transparent 80%);
     animation:ambientSpin 20s linear infinite;
+  }
+  #game-wrap:fullscreen,
+  #game-wrap:-webkit-full-screen{
+    width:100vw;
+    height:100dvh;
+    max-width:none;
+    max-height:none;
+    border:0;
+    border-radius:0;
   }
   @keyframes ambientSpin{to{transform:rotate(360deg)}}
 
@@ -1068,15 +1077,63 @@
     setTimeout(()=>{el.celebration.innerHTML='';},4000);
   }
 
-  async function toggleFullscreen(){
+  function activeFullscreenElement(){
+    return document.fullscreenElement||document.webkitFullscreenElement||null;
+  }
+
+  function isStandaloneDisplay(){
+    return window.matchMedia?.('(display-mode: fullscreen)').matches||
+      window.matchMedia?.('(display-mode: standalone)').matches||
+      navigator.standalone===true;
+  }
+
+  function isAppleMobileBrowser(){
+    return /iPad|iPhone|iPod/.test(navigator.userAgent)||
+      (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  }
+
+  function fullscreenFallbackMessage(){
+    return isAppleMobileBrowser()&&!isStandaloneDisplay()
+      ? 'For fullscreen on iPhone or iPad, add this game to your Home Screen.'
+      : 'Fullscreen is unavailable here. The game will continue normally.';
+  }
+
+  async function requestGameFullscreen({notify=true}={}){
+    if(activeFullscreenElement()||isStandaloneDisplay()) return true;
+
+    const standardRequest=el.wrap.requestFullscreen;
+    const webkitRequest=el.wrap.webkitRequestFullscreen;
+    if(!standardRequest&&!webkitRequest){
+      if(isAppleMobileBrowser()) requestAnimationFrame(()=>window.scrollTo(0,1));
+      if(notify) showToast(fullscreenFallbackMessage());
+      return false;
+    }
+
     try{
-      if(!document.fullscreenElement){
-        await el.wrap.requestFullscreen?.({navigationUI:'hide'});
+      if(standardRequest){
+        await standardRequest.call(el.wrap,{navigationUI:'hide'});
       }else{
-        await document.exitFullscreen?.();
+        await webkitRequest.call(el.wrap);
       }
+      return true;
     }catch(_){
-      showToast('Fullscreen is unavailable here.');
+      if(isAppleMobileBrowser()) requestAnimationFrame(()=>window.scrollTo(0,1));
+      if(notify) showToast(fullscreenFallbackMessage());
+      return false;
+    }
+  }
+
+  async function toggleFullscreen(){
+    if(!activeFullscreenElement()){
+      await requestGameFullscreen();
+      return;
+    }
+
+    try{
+      const exit=document.exitFullscreen||document.webkitExitFullscreen;
+      await exit?.call(document);
+    }catch(_){
+      showToast('Fullscreen could not be closed here.');
     }
   }
 
@@ -1125,7 +1182,10 @@
     event.preventDefault();
   }
 
-  el.startBtn.addEventListener('click',startGame);
+  el.startBtn.addEventListener('click',()=>{
+    void requestGameFullscreen();
+    startGame();
+  });
   el.roundBtn.addEventListener('click',buildLevel);
   el.nextBtn.addEventListener('click',nextStage);
   el.pauseBtn.addEventListener('click',()=>state.paused?resumeGame():pauseGame());
