@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#08082d">
+<link rel="preconnect" href="https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev" crossorigin>
+<link rel="dns-prefetch" href="//pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev">
 <title>JNC Memory Match — 5.6 Instant Reveal</title>
 <style>
   :root{
@@ -234,7 +236,7 @@
   .front::before{
     content:"";
     width:54%; aspect-ratio:1;
-    background-image:url('https://static.wixstatic.com/media/7b5caa_48cc1b852b9043debb22f364ae6341ad~mv2.png');
+    background-image:url('https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/2023%20JNC%20Round%20Logo.png');
     background-repeat:no-repeat;
     background-position:center;
     background-size:contain;
@@ -622,30 +624,30 @@
 (() => {
   'use strict';
 
-  const CARD_BACK = 'https://static.wixstatic.com/media/7b5caa_48cc1b852b9043debb22f364ae6341ad~mv2.png';
+  const CARD_BACK = 'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/2023%20JNC%20Round%20Logo.png';
   const imagesSet1 = [
-    'https://static.wixstatic.com/media/7b5caa_8904a373cbd9406c87145c4a0e725c21~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_c57f738ab47b49b392695f3e9728ab63~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_9955653d86fb4184aeff6f003b2a4632~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_9ac8503c4c4d42f9a04b1a486e4886c1~mv2.png',
-    'https://static.wixstatic.com/media/7b5caa_1fa109c434e745efac65e219123383c4~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_a2582dad199847329801192e0c99379b~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_54635aa4aa70418baf51221f1aa7403a~mv2.png',
-    'https://static.wixstatic.com/media/7b5caa_6475928c15d942c2b71ca017d0a29f43~mv2.png',
-    'https://static.wixstatic.com/media/7b5caa_cd610a8301284cd19f3875deb5d2d67e~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_3d2ea54a15b14873a76ad9bb26a36862~mv2.jpg'
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/elly%20throne.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/elly%20green.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/derek%20cool.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/derek%20red.png',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/derek%20cake.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/brad%20close.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/jordyn%20blue.png',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/brad%20blue.png',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/sweet%20savanna.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/jordyn%20funny.jpg'
   ];
   const imagesSet2 = [
-    'https://static.wixstatic.com/media/7b5caa_a0def2b9ee2b48afaf4ccd8d28287bad~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_64e41c380c954b2ca7bbb4c1931d3a29~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_2bcb7061412e4ce38a2d40efd85b27f2~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_7efd2c22ea9f48359a0e7c2d87c28e5e~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_2ff620d18071487b8c1c6c78cfc1a048~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_0e008b23b63044d5b0db5aa35fe600c8~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_9ddf682cbfc64fc990e3448c6a914312~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_2a388368040a467a8337ba1f390bb59e~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_c9903c1b14e1413d894a7c594fda0892~mv2.jpg',
-    'https://static.wixstatic.com/media/7b5caa_54866350fe8d45298a6a6bc57f9c1e1d~mv2.jpg'
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/elly%20scary.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/elly%20oyster.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/brad%20tober.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/brad%20smoke.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/steve%20cupcake.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/brad%20plaid.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/steve%20axe.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/kev%20lights.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/jordy%20hotdog.jpg',
+    'https://pub-e71fca55ed9c40b29b0378015d6aa2f0.r2.dev/memorymatch/assets/round%202/paul%20rum.jpg'
   ];
   const combinedImages = [...imagesSet1, ...imagesSet2];
 
